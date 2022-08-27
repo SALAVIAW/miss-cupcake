@@ -1,11 +1,11 @@
 import Image from "next/image"
 import { ChangeEvent, useState } from "react"
-import { ProductDTO } from "../../types"
+// import { ProductDTO } from "../../types"
 import styles from './styles.module.css'
 
-interface CardProps {
-  product: ProductDTO
-}
+// interface CardProps {
+//   product: ProductDTO
+// }
 
 const INITIAL_QUANTITY = 1
 const NOSTOCK_QUANTITY = 0
@@ -13,11 +13,11 @@ const MAXIMUM_LIMIT_REACHED = 'Maximum quantity reached'
 const OUT_OF_STOCK = 'Out of stock'
 const MESSAGE_TIMEOUT = 5000
 
-export default function Card({ product }: CardProps) {
+export default function Card({ product }) {
   const [quantity, setQuantity] = useState(INITIAL_QUANTITY)
   const [isMessageVisible, setIsMessageVisible] = useState(false)
   
-  function handleIncreaseQuantity(productQuantity: number) {
+  function handleIncreaseQuantity(productQuantity) {
     if (quantity >= productQuantity) {
       return toggleProductMessage()
     }
@@ -32,7 +32,7 @@ export default function Card({ product }: CardProps) {
     setQuantity(currentQuantity => currentQuantity - 1)
   }
 
-  function handleChangeQuantity(event: ChangeEvent<HTMLInputElement>, productQuantity: number) {
+  function handleChangeQuantity(event, productQuantity) {
     const incomingValue = Number(event.target.value)
     const newValue = incomingValue > productQuantity ? productQuantity : incomingValue
 
@@ -66,15 +66,28 @@ export default function Card({ product }: CardProps) {
       </a>
       <section className={styles.actions}>
         <section className={styles.quantity}>
-          <input type="button" value="-" onClick={handleDecreaseQuantity} />
+          <input
+            type="button"
+            value="-"
+            onClick={handleDecreaseQuantity}
+          />
           <input
             type="text"
             onChange={event => handleChangeQuantity(event, product.quantity)}
             value={product.quantity > NOSTOCK_QUANTITY ? quantity : NOSTOCK_QUANTITY}
           />
-          <input type="button" value="+" onClick={() => handleIncreaseQuantity(product.quantity)} />
+          <input
+            type="button"
+            value="+"
+            onClick={() => handleIncreaseQuantity(product.quantity)}
+          />
         </section>
-        <button disabled={product.quantity === 0}>Add to Cart</button>
+        <button
+          disabled={product.quantity === 0}
+          // onClick={ }
+        >
+          Add to Cart
+        </button>
       </section>
     </section>
   )
