@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import Card from '../components/Card'
 import styles from '../styles/home.module.css'
 // import { ProductDTO, ProductsResponse } from '../types'
+import Link from 'next/link';
 
 const Home = () => {
   const [products, setProducts] = useState([])
@@ -25,15 +26,30 @@ const Home = () => {
         <header className={styles.header}>
           <nav className={styles.nav} role="navigation">
             <ul className={styles.links}>
-              <li><a href="#">Shop</a></li>
-              <li><a href="#">Our Story</a></li>
-              <li><a href="#">Why Miss Cupcake</a></li>
+              <li>
+                <Link href="/Teste">
+                  <a>Shop</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/ourStory">
+                  <a>Our Story</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/missCupcake">
+                  <a>Why Miss Cupcake</a>
+                </Link>
+              </li>
             </ul>
           </nav>
           <figure className={styles.cart}>
-            <a href="#">
-              <Image src="/icons/cart.svg" alt="Cart" width={40} height={40} />
-            </a>
+            <Link href="/Cart">
+            {/* <Link href="/"> */}
+              <a >
+                <Image src="/icons/cart.svg" alt="Cart" width={40} height={40} />
+              </a>
+            </Link>
           </figure>
         </header>
         <section className={styles.banner} role="banner">
