@@ -18,6 +18,15 @@
   justify-content: flex-start;
 }
 
+.cart-titles {
+  height: 2rem;
+  color: var(--gray);
+}
+
+.cart-subtitles {
+  color: var(--gray);
+}
+
 .cart {
   height: 4rem;
   margin-left: auto;
@@ -35,6 +44,10 @@
 
 .cart svg {
   color: aqua;
+}
+
+.back {
+  cursor: pointer;
 }
 
 .banner {

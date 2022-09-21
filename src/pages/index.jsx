@@ -1,16 +1,17 @@
 import axios from 'axios'
-import type { NextPage } from 'next'
+// import type { NextPage } from 'next'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Card from '../components/Card'
 import styles from '../styles/home.module.css'
-import { ProductDTO, ProductsResponse } from '../types'
+// import { ProductDTO, ProductsResponse } from '../types'
+import Link from 'next/link';
 
-const Home: NextPage = () => {
-  const [products, setProducts] = useState<ProductDTO[]>([])
+const Home = () => {
+  const [products, setProducts] = useState([])
 
   async function getProducts() {
-    const response = await axios.get<ProductsResponse>('/api/products')
+    const response = await axios.get('/api/products')
 
     setProducts(response.data.products)
   }
@@ -23,17 +24,32 @@ const Home: NextPage = () => {
     <>
       <section className={styles.hero}>
         <header className={styles.header}>
-          <nav role="navigation">
+          <nav className={styles.nav} role="navigation">
             <ul className={styles.links}>
-              <li><a href="#">Shop</a></li>
-              <li><a href="#">Our Story</a></li>
-              <li><a href="#">Why Miss Cupcake</a></li>
+              <li>
+                <Link href="/Teste">
+                  <a>Shop</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/ourStory">
+                  <a>Our Story</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/missCupcake">
+                  <a>Why Miss Cupcake</a>
+                </Link>
+              </li>
             </ul>
           </nav>
           <figure className={styles.cart}>
-            <a href="#">
-              <Image src="/icons/cart.svg" alt="Cart" width={40} height={40} />
-            </a>
+            <Link href="/Cart">
+            {/* <Link href="/"> */}
+              <a >
+                <Image src="/icons/cart.svg" alt="Cart" width={40} height={40} />
+              </a>
+            </Link>
           </figure>
         </header>
         <section className={styles.banner} role="banner">
